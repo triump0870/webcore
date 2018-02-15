@@ -1,18 +1,41 @@
 <template>
+
   <div id="app">
-    <header>
-      <span>Vue.js PWA</span>
-    </header>
-    <main>
-      <img src="./assets/logo.png" alt="Vue.js PWA">
-      <router-view></router-view>
-    </main>
+    <div class="jumbotron">
+    <div class="container">
+      <header>
+        <span>BriteCore</span>
+      </header>
+        <div class="container">
+          <RiskTypeSelection v-on:riskTypeChanged="riskTypeChanged"></RiskTypeSelection>
+          <RiskTypeList v-bind:source="source"></RiskTypeList>
+        </div>
+      </div>
+    </div>
+    </div>
   </div>
 </template>
 
 <script>
+import RiskTypeList from './components/RiskTypeList'
+import RiskTypeSelection from './components/RiskTypeSelection'
+
 export default {
-  name: 'app'
+  name: 'app',
+  components: {
+    RiskTypeSelection,
+    RiskTypeList
+  },
+  data () {
+    return {
+      source: ''
+    }
+  },
+  methods: {
+    riskTypeChanged: function (source) {
+      this.source = source
+    }
+  }
 }
 </script>
 
